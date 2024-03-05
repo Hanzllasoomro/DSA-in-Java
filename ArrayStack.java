@@ -27,7 +27,7 @@ public class ArrayStack {
         a[size++] = o;
     }
     void pushArray(Object[] a){
-        for(int i = a.length-1 ; i >=0; i--)
+        for(int i =0 ; i < a.length ; i++)
             push(a[i]);
     }
     public int size(){  return size;    }
@@ -38,7 +38,7 @@ public class ArrayStack {
     }
     void display(){
         for(int i = 0; i < a.length ; i++)
-            System.out.println(a[i]);
+            System.out.println(pop());
         System.out.println("[ null ]");
     }
     public String toString(){
@@ -67,24 +67,20 @@ public class ArrayStack {
                 return false;
         return true;
     }
+    boolean search(Object data){
+        for(int i=0 ; i <a.length ; i++)
+            if(a[i] == data)
+                return true;
+        return false;
+    }
 
     public static void main(String[] args) {
 
-        Object[] array = {4,7,3,4,8,1};
+        Object[] array = {1,2,3,4,5,6,7,8,9,10};
         var stack2 = new ArrayStack(array.length);
         stack2.pushArray(array);
-        System.out.println(stack2.toString());
 
-        var stack = new LinkedListStack();
-        stack.push(4);
-        stack.push(7);
-        stack.push(3);
-        stack.push(4);
-        stack.push(8);
-        stack.push(1,10);
-        System.out.println(stack.toString());
-
-        System.out.println(stack2.isEqual(stack));
+        stack2.display();
 
     }
     }

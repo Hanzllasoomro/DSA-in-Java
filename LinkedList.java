@@ -2,7 +2,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
-public class LinkedList<T> {
+public class LinkedList {
     Node head;
     Node last;
     int size = 0;
@@ -12,16 +12,16 @@ public class LinkedList<T> {
     }
 
     class Node {
-        T data;
+        Object data;
         Node nextNode;
 
-        Node(T data) {
+        Node(Object data) {
             this.data = data;
             nextNode = null;
             size++;
         }
 
-        Node(T data, Node nextNode) {
+        Node(Object data, Node nextNode) {
             this.data = data;
             this.nextNode = nextNode;
             size++;
@@ -43,15 +43,15 @@ public class LinkedList<T> {
         return (size == 0 && head == null);
     }
 
-    T getLast() {
+    Object getLast() {
         return last.data;
     }
 
-    T getHead() {
+    Object getHead() {
         return head.data;
     }
 
-    void add(T data, int pos) {
+    void add(Object data, int pos) {
         var newNode = new Node(data);
         if (isEmpty())
             head = newNode;
@@ -76,7 +76,7 @@ public class LinkedList<T> {
         size++;
     }
 
-    void add(T value) {
+    void add(Object value) {
         Node newNode = new Node(value);
         if (head == null)
             head = newNode;
@@ -89,7 +89,7 @@ public class LinkedList<T> {
         }
     }
 
-    void addFirst(T data) {
+    void addFirst(Object data) {
         var newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -99,7 +99,7 @@ public class LinkedList<T> {
         head = newNode;
     }
 
-    void addLast(T data) {
+    void addLast(Object data) {
         var newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -117,7 +117,7 @@ public class LinkedList<T> {
         System.out.println("| null |");
     }
 
-    Node delete(T data) {
+    Node delete(Object data) {
         if (head == null)
             return head;
         if (head.data == data)
@@ -128,17 +128,16 @@ public class LinkedList<T> {
                 break;
             }
         }
+        size--;
         return head;
     }
 
-    void replace(T x, int position) {
-        Node newNode = new Node(x);
+    void replace(Object x, int position) {
         int count = 1;
         Node p = head;
         while (p.nextNode != null) {
             if (count == position) {
-                newNode.nextNode = p.nextNode;
-                p.data = newNode.data;
+                p.data = x;
                 break;
             }
             count++;
@@ -255,10 +254,10 @@ public class LinkedList<T> {
         return true;
     }
 
-    T[] toArray() {
+    Object[] toArray() {
         int size = getSize();
         Node p = head;
-        T[] array = (T[]) new Object[size];
+        Object[] array = new Object[size];
         for (int i = 0; i < size; i++) {
             array[i] = p.data;
             p = p.nextNode;
@@ -267,7 +266,7 @@ public class LinkedList<T> {
     }
 
     void swapNodes(Node node1, Node node2) {
-        T temp = node1.data;
+        Object temp = node1.data;
         node1.data = node2.data;
         node2.data = temp;
     }
@@ -340,7 +339,7 @@ public class LinkedList<T> {
         return array;
     }
 
-    String search(T searchKey) {
+    String search(Object searchKey) {
         Node current = head;
         while (current != null) {
             if (current == searchKey)
@@ -350,7 +349,27 @@ public class LinkedList<T> {
         return "No, this element isn't present in this link.";
     }
 
-    /* Node add(LinkedList l1 , LinkedList l2){
+    int highest(){
+        int h = (int) head.data;
+        for(Node temp = head ; temp !=null ; temp = temp.nextNode){
+            if((int)temp.data > h)
+                h = (int)temp.data;
+        }
+        return h;
+    }
+    Object retrive() {
+        if (head == null)
+            return null;
+        else {
+            Node temp = head;
+            while (temp.nextNode != null)
+                temp = temp.nextNode;
+            return temp.data;
+        }
+    }
+
+
+    /* Node enqueue(LinkedList l1 , LinkedList l2){
          Node dummy = new Node(0);
          Node tail = dummy;
          Node a = l1.head;
@@ -362,10 +381,6 @@ public class LinkedList<T> {
          }
      }*/
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-        list.add(5);
-        list.add("Umar");
-        list.add(8, 3);
-        System.out.println(list.getLast());
+
     }
 }

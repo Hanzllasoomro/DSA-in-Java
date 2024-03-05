@@ -4,13 +4,11 @@ public class Arrays {
         int right = arr.length;
 
         while (left <= right) {
-            int mid = (left + right) / 2;
-
-            if (arr[mid] == num) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == num)
                 return mid;
-            }
-
-            if (arr[mid] < num) left = mid + 1;
+            if (arr[mid] < num)
+                left = mid + 1;
             else right = mid - 1;
         }
         return -1;
@@ -245,11 +243,12 @@ public class Arrays {
         else return 0;
     }
 
-    static void display(int[] arr){
+    static void display(int[] arr) {
         int n = arr.length;
-        for(int i = 0 ; i<arr.length ; i++)
-            System.out.print("["+ arr[i]+"] ,");
+        for (int i = 0; i < arr.length; i++)
+            System.out.print("[" + arr[i] + "] ,");
     }
+
     static void display(int[][] arr) {
         int rows = arr.length;
         int columns = arr[0].length;
@@ -259,19 +258,20 @@ public class Arrays {
             System.out.println();
         }
     }
+
     static void rotate(int[] arr, int n) {
         int size = arr.length;
-        if(size == n)
-            return ;
-        int distance = size-n;
-        for(int i =0 , j=1; i < size-1 ; i++ , j++)
+        if (size == n)
+            return;
+        int distance = size - n;
+        for (int i = 0, j = 1; i < size - 1; i++, j++)
             arr[j] = arr[i];
-        arr[0]= arr[size-1];
+        arr[0] = arr[size - 1];
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7};
-        rotate(arr,1);
-        display(arr);
+        int[] arr = {1, 15,33,42,43,45,67,73,75,77,89,95};
+        System.out.println(binarySearch(arr, 95));
+        System.out.println(binarySearch(arr, 47));
     }
 }
